@@ -9,16 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tensorflow/tfjs-core": "^1.2.9",
+    "aws-sdk": "^2.1475.0",
+    "axios": "^1.5.1",
+    "face-api.js": "^0.21.0",
+    "fs": "^0.0.1-security",
+    "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.4"
+    "react-dropzone": "^14.2.3",
+    "tfjs-image-recognition-base": "^0.6.2"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "13.5.4"
+    "eslint-config-next": "13.5.4",
+    "html-loader": "^4.2.0",
+    "typescript": "^5"
+  },
+  "resolutions": {
+    "tfjs-image-recognition-base/@tensorflow/tfjs-core": "<=1.2.9"
   }
 }
