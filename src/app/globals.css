@@ -4,21 +4,102 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-top: 3rem;
 }
 
 canvas {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+}
+
+li {
+  display: flex;
+  gap: 20px;
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+.delete-button {
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  padding-right: 6px;
+  padding-left: 6px;
+  transition: scale 0.25s;
+  font-weight: 900;
+}
+
+.delete-button:hover {
+  scale: 115%;
+}
+
+.delete-button:focus {
+  scale: 115%;
+}
+
+.delete-button:active {
+  scale: 105%;
+}
+
+.video-container {
+  position: relative;
+}
+
+.facial-recognition-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.snapshotButton {
+  background-color: green;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  padding: 7px;
+}
+
+.sun-and-moon {
+  position: absolute;
+  top: -10rem;
+  right: -10rem;
+  height: 25rem;
+  width: auto;
+  z-index: -1;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 768px) {
+}
+
+/* Styles for desktop devices */
+@media (min-width: 769px) {
+  /* Desktop styles here */
 }
