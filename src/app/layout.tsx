@@ -1,4 +1,3 @@
-import SunAndMoon from "@/components/sun-and-moon";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -18,7 +17,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <SunAndMoon />
       <body className={inter.className}>
         {children}
         <Toaster position="top-right" />
