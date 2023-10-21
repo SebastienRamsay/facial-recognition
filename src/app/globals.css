@@ -47,6 +47,7 @@ form {
   padding-left: 6px;
   transition: scale 0.25s;
   font-weight: 900;
+  cursor: pointer;
 }
 
 .delete-button:hover {
@@ -78,15 +79,23 @@ form {
   border-radius: 15px;
   font-weight: bold;
   padding: 7px;
+  cursor: pointer;
 }
 
 .sun-and-moon {
   position: absolute;
   top: -10rem;
   right: -10rem;
-  height: 25rem;
+  height: 20rem;
   width: auto;
   z-index: -1;
+  object-fit: cover;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,6 +106,15 @@ form {
 
 /* Styles for mobile devices */
 @media (max-width: 768px) {
+  .sun-and-moon {
+    position: absolute;
+    top: -10rem;
+    left: 3.5rem;
+    height: 20rem;
+    width: auto;
+    z-index: -1;
+    object-fit: cover;
+  }
 }
 
 /* Styles for desktop devices */

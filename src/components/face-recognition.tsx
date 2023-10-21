@@ -158,7 +158,7 @@ const FaceRecognition: React.FC = () => {
       for (let i = 1; i <= numberOfPics; i++) {
         console.log("LABEL: ", label);
         const img = await faceapi.fetchImage(
-          `http://localhost:3000/labeled_images/${label}/${i}.jpg`
+          `http://localhost:2443/labeled_images/${label}/${i}.jpg`
         );
         const detections = await faceapi
           .detectSingleFace(img)
