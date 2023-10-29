@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import FacesContextProvider from "../../context/faces-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-        <Toaster position="top-right" />
+        <FacesContextProvider>
+          {children}
+          <Toaster position="top-right" reverseOrder={false} />
+        </FacesContextProvider>
       </body>
     </html>
   );
