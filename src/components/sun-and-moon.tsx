@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 export default function SunAndMoon() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<Boolean | undefined>(undefined);
 
   useEffect(() => {
     // Check for dark mode when the component mounts
@@ -22,11 +22,12 @@ export default function SunAndMoon() {
 
   return (
     <div>
-      {isDarkMode !== undefined ? isDarkMode === true ? (
+      {isDarkMode === true ? (
         <Image src="/pics/moon.png" alt="moon" width={1000} height={1000} className="sun-and-moon" />
-      ) : (
+      ) : null }
+      {isDarkMode === false ?(
         <Image src="/pics/sun.png" alt="sun" width={500} height={500} className="sun-and-moon" />
-      ): <></>}
+      ): null}
     </div>
   );
 }
