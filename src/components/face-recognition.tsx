@@ -9,11 +9,13 @@ import {
 } from "../../actions/database";
 import * as faceapi from "face-api.js";
 import { checkName } from "../../lib/utils";
+import Typewriter from "typewriter-effect"
 
 const FaceRecognition: React.FC = () => {
   var hasMounted = useRef(false);
   const { faces, setFaces } = useFacesContext();
   const [facesLength, setFacesLength] = useState(0);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
     if (hasMounted.current) {
@@ -38,13 +40,13 @@ const FaceRecognition: React.FC = () => {
   async function loadLabeledImages() {
     const labels =
       (await getFolderNames(
-        "C:/Users/sebas/Documents/.ProgramingProjects/facial-recognition/public/labeled_images/"
+        "/home/ramsay/Desktop/facial-recognition/public/labeled_images/"
       )) ?? [];
     setFaces(labels);
     const labeledFaceDescriptorsPromises = labels.map(async (label: string) => {
       const numberOfPics =
         (await getNumberOfFiles(
-          "C:/Users/sebas/Documents/.ProgramingProjects/facial-recognition/public/labeled_images/" +
+          "/home/ramsay/Desktop/facial-recognition/public/labeled_images/" +
             label
         )) ?? 0;
 
@@ -56,7 +58,7 @@ const FaceRecognition: React.FC = () => {
       for (let i = 1; i <= numberOfPics; i++) {
         console.log("LABEL: ", label);
         const img = await faceapi.fetchImage(
-          `http://localhost:2443/labeled_images/${label}/${i}.jpg`
+          `https://facialrecognition.ramsaysdetailing.ca/labeled_images/${label}/${i}.jpg`
         );
         const detections = await faceapi
           .detectSingleFace(img)
@@ -85,6 +87,7 @@ const FaceRecognition: React.FC = () => {
       .getUserMedia({ video: true })
       .then((stream) => {
         video.srcObject = stream;
+        setVideoLoaded(true)
       })
       .catch((error) => {
         console.error(error);
@@ -226,6 +229,16 @@ const FaceRecognition: React.FC = () => {
           muted
         />
       </span>
+
+      {!videoLoaded ? (
+        <Typewriter
+          options={{
+            autoStart: true,
+            loop: true,
+            delay: 50,
+            strings: ["Loading Facial Recognition Software", "Hacking The US Navy", "Your device is rather slow", "I'm sure nothing went wrong"]
+          }}/>
+      ) :null}
 
       <form
         action={async (formData) => {
