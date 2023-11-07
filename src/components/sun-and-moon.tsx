@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -10,8 +10,11 @@ export default function SunAndMoon() {
     setIsDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
 
     // Update isDarkMode if it changes in the future
-    const darkModeListener = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-    const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const darkModeListener = (e: MediaQueryListEvent) =>
+      setIsDarkMode(e.matches);
+    const darkModeMediaQuery = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
     darkModeMediaQuery.addEventListener("change", darkModeListener);
 
     return () => {
@@ -23,11 +26,25 @@ export default function SunAndMoon() {
   return (
     <div>
       {isDarkMode === true ? (
-        <Image src="/pics/moon.png" alt="moon" width={1000} height={1000} className="sun-and-moon" />
-      ) : null }
-      {isDarkMode === false ?(
-        <Image src="/pics/sun.png" alt="sun" width={500} height={500} className="sun-and-moon" />
-      ): null}
+        <Image
+          src="/pics/moon.png"
+          alt="moon"
+          width={1000}
+          height={1000}
+          className="sun-and-moon"
+          priority={true}
+        />
+      ) : null}
+      {isDarkMode === false ? (
+        <Image
+          src="/pics/sun.png"
+          alt="sun"
+          width={500}
+          height={500}
+          className="sun-and-moon"
+          priority={true}
+        />
+      ) : null}
     </div>
   );
 }
