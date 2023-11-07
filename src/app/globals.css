@@ -50,7 +50,7 @@ form {
   border: none;
   font-size: 1.3em;
   position: absolute;
-  top: 1.5px;
+  top: 1px;
   right: 0px;
   font-color: white;
 }
@@ -108,7 +108,7 @@ input {
 html,
 body {
   max-width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 @media (prefers-color-scheme: dark) {

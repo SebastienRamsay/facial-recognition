@@ -6,6 +6,8 @@ type Faces = string[] | undefined;
 type FacesContextType = {
   faces: Faces;
   setFaces: React.Dispatch<React.SetStateAction<string[] | undefined>>;
+  facesLength: number;
+  setFacesLength: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const FacesContext = createContext<FacesContextType | null>(null);
@@ -18,9 +20,12 @@ export default function FacesContextProvider({
   children,
 }: FacesContextProviderProps) {
   const [faces, setFaces] = useState<string[]>();
+  const [facesLength, setFacesLength] = useState(0);
 
   return (
-    <FacesContext.Provider value={{ faces, setFaces }}>
+    <FacesContext.Provider
+      value={{ faces, setFaces, facesLength, setFacesLength }}
+    >
       {children}
     </FacesContext.Provider>
   );
