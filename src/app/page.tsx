@@ -5,7 +5,7 @@ import NameForm from "@/components/name-form";
 
 export default async function Home() {
   return (
-    <main className="facial-recognition-container">
+    <main>
       <SunAndMoon />
       <FaceRecognition />
       <NameForm />
