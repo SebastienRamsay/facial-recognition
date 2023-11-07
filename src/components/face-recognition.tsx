@@ -13,7 +13,6 @@ const FaceRecognition: React.FC = () => {
   useEffect(() => {
     if (hasMounted.current) {
       // Component has already mounted, it's a remount
-      console.log("Component remounted");
       return;
     }
     hasMounted.current = true;

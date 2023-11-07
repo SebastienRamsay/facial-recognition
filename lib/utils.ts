@@ -166,48 +166,58 @@ export async function setupVideo(
   });
 }
 
+// C:/Users/sebas/Documents/.ProgramingProjects/facial-recognition/public/labeled_images/
+// /home/ramsay/Desktop/facial-recognition/public/labeled_images/
 export async function loadLabeledImages(
   setFaces: React.Dispatch<React.SetStateAction<string[] | undefined>>
 ) {
   const labels =
     (await getFolderNames(
-      "/home/ramsay/Desktop/facial-recognition/public/labeled_images/"
+      "C:/Users/sebas/Documents/.ProgramingProjects/facial-recognition/public/labeled_images/"
     )) ?? [];
-  setFaces(labels);
-  const labeledFaceDescriptorsPromises = labels.map(async (label: string) => {
-    const numberOfPics =
-      (await getNumberOfFiles(
-        "/home/ramsay/Desktop/facial-recognition/public/labeled_images/" +
-          label
-      )) ?? 0;
+  let cleanedLabels = <string[]>[];
+  const labeledFaceDescriptorsPromises = labels.map(
+    async (label: string, i: number) => {
+      const numberOfPics =
+        (await getNumberOfFiles(
+          "C:/Users/sebas/Documents/.ProgramingProjects/facial-recognition/public/labeled_images/" +
+            label
+        )) ?? 0;
 
-    if (numberOfPics < 0) {
-      return undefined;
+      if (numberOfPics == 0) {
+        deleteFace(label);
+        console.log("EMPTY FACE FOLDER FOUND, DELETING FOLDER.");
+        return undefined;
+      }
+      cleanedLabels.push(label);
+
+      const descriptions = [];
+      for (let i = 1; i <= numberOfPics; i++) {
+        const img = await faceapi.fetchImage(
+          `http://localhost:2443/labeled_images/${label}/${i}.jpg`
+        );
+        const detections = await faceapi
+          .detectSingleFace(img)
+          .withFaceLandmarks()
+          .withFaceDescriptor();
+        if (detections) descriptions.push(detections.descriptor);
+      }
+
+      if (descriptions.length === 0) {
+        return undefined;
+      }
+
+      return new faceapi.LabeledFaceDescriptors(label, descriptions);
     }
-
-    const descriptions = [];
-    for (let i = 1; i <= numberOfPics; i++) {
-      console.log("LABEL: ", label);
-      const img = await faceapi.fetchImage(
-        `https://facialrecognition.ramsaysdetailing.ca/labeled_images/${label}/${i}.jpg`
-      );
-      const detections = await faceapi
-        .detectSingleFace(img)
-        .withFaceLandmarks()
-        .withFaceDescriptor();
-      if (detections) descriptions.push(detections.descriptor);
-    }
-
-    if (descriptions.length === 0) {
-      return undefined;
-    }
-
-    return new faceapi.LabeledFaceDescriptors(label, descriptions);
-  });
+  );
 
   const labeledFaceDescriptors = await Promise.all(
     labeledFaceDescriptorsPromises
   );
+
+  console.log(cleanedLabels);
+  setFaces(cleanedLabels);
+
   return labeledFaceDescriptors.filter(
     (descriptor) => descriptor !== undefined
   );
