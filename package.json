@@ -37,5 +37,8 @@
   },
   "resolutions": {
     "tfjs-image-recognition-base/@tensorflow/tfjs-core": "<=1.2.9"
+  },
+  "browser": {
+    "fs": false
   }
 }
