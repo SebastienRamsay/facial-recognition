@@ -9,7 +9,8 @@ import {
 } from "../../actions/database";
 import * as faceapi from "face-api.js";
 import { checkName } from "../../lib/utils";
-import Typewriter from "typewriter-effect"
+import Typewriter from "typewriter-effect";
+import { MdDeleteForever } from "react-icons/md";
 
 const FaceRecognition: React.FC = () => {
   var hasMounted = useRef(false);
@@ -87,7 +88,7 @@ const FaceRecognition: React.FC = () => {
       .getUserMedia({ video: true })
       .then((stream) => {
         video.srcObject = stream;
-        setVideoLoaded(true)
+        setVideoLoaded(true);
       })
       .catch((error) => {
         console.error(error);
@@ -109,7 +110,6 @@ const FaceRecognition: React.FC = () => {
   };
 
   async function reloadFaceRecognition(canvas: HTMLCanvasElement) {
-    await loadLabeledImages();
     canvas.remove();
     await setupVideo();
   }
@@ -217,6 +217,14 @@ const FaceRecognition: React.FC = () => {
     });
   }
 
+  function capitalizeWords(name: string) {
+    return name
+      .replace(/\b\w/g, function (match) {
+        return match.toUpperCase();
+      })
+      .trim();
+  }
+
   return (
     <div className="facial-recognition-container">
       <span className="video-container">
@@ -236,17 +244,21 @@ const FaceRecognition: React.FC = () => {
             autoStart: true,
             loop: true,
             delay: 50,
-            strings: ["Loading Facial Recognition Software", "Hacking The US Navy", "Your device is rather slow", "I'm sure nothing went wrong"]
-          }}/>
-      ) :null}
+            strings: [
+              "Loading Facial Recognition Software",
+              "Hacking The US Navy",
+              "Your device is rather slow",
+              "I'm sure nothing went wrong",
+            ],
+          }}
+        />
+      ) : null}
 
       <form
         action={async (formData) => {
           const name = formData.get("name")?.toString();
           if (checkName(name, facesLength) && name) {
-            takePicture(
-              name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
-            );
+            takePicture(capitalizeWords(name));
           }
         }}
       >
@@ -263,7 +275,7 @@ const FaceRecognition: React.FC = () => {
                   onClick={async () => removeFace(face)}
                   className="delete-button"
                 >
-                  X
+                  <MdDeleteForever />
                 </button>
               </li>
             ))

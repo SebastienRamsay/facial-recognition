@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 
 export const checkName = (name: string | undefined, facesLength: number) => {
   if (facesLength < 1) {
-    toast.error("I can't see your beutiful face");
+    toast.error("I can't see your beautiful face");
     return false;
   }
 

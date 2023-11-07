@@ -20,10 +20,6 @@ canvas {
 }
 
 video {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-content: center;
   width: 100%;
   height: 100%;
   border-radius: 30px;
@@ -32,22 +28,31 @@ video {
 li {
   display: flex;
   gap: 20px;
+  font-weight: 500;
+  position: relative;
+  padding-right: 40px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 form {
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
 
 .delete-button {
-  background-color: red;
-  border: none;
-  border-radius: 10px;
-  padding-right: 6px;
-  padding-left: 6px;
-  transition: scale 0.25s;
-  font-weight: 900;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 1.3em;
+  position: absolute;
+  top: 1.5px;
+  right: 0px;
+  font-color: white;
 }
 
 .delete-button:hover {
@@ -78,8 +83,16 @@ form {
   border: none;
   border-radius: 15px;
   font-weight: bold;
-  padding: 7px;
+  padding: 10px;
+  max-height: 2.2rem;
   cursor: pointer;
+}
+
+input {
+  height: 25px;
+  align-content: center;
+  justify-content: center;
+  margin: 3.5px 0 0 90px;
 }
 
 .sun-and-moon {
@@ -102,18 +115,33 @@ body {
   html {
     color-scheme: dark;
   }
+
+  .delete-button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 1.3em;
+    padding-top: 2;
+    font-color: black;
+  }
 }
 
 /* Styles for mobile devices */
 @media (max-width: 768px) {
   .sun-and-moon {
     position: absolute;
-    top: -10rem;
-    left: 3.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
     height: 20rem;
     width: auto;
     z-index: -1;
     object-fit: cover;
+  }
+  input {
+    height: 25px;
+    align-content: center;
+    justify-content: center;
+    margin: 3.5px;
   }
 }
 

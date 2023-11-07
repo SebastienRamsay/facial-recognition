@@ -20,8 +20,10 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.11.0",
     "react-webcam": "^7.1.1",
-    "tfjs-image-recognition-base": "^0.6.2"
+    "tfjs-image-recognition-base": "^0.6.2",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.6",
