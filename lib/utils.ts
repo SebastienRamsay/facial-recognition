@@ -171,13 +171,13 @@ export async function loadLabeledImages(
 ) {
   const labels =
     (await getFolderNames(
-      "/public/labeled_images/"
+      "/home/ramsay/Desktop/facial-recognition/public/labeled_images/"
     )) ?? [];
   setFaces(labels);
   const labeledFaceDescriptorsPromises = labels.map(async (label: string) => {
     const numberOfPics =
       (await getNumberOfFiles(
-        "/public/labeled_images/" +
+        "/home/ramsay/Desktop/facial-recognition/public/labeled_images/" +
           label
       )) ?? 0;
 
