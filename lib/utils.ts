@@ -173,14 +173,14 @@ export async function loadLabeledImages(
 ) {
   const labels =
     (await getFolderNames(
-      "C:/Users/sebas/Documents/.ProgramingProjects/facial-recognition/public/labeled_images/"
+      "/home/ramsay/Desktop/facial-recognition/public/labeled_images/"
     )) ?? [];
   let cleanedLabels = <string[]>[];
   const labeledFaceDescriptorsPromises = labels.map(
     async (label: string, i: number) => {
       const numberOfPics =
         (await getNumberOfFiles(
-          "C:/Users/sebas/Documents/.ProgramingProjects/facial-recognition/public/labeled_images/" +
+          "/home/ramsay/Desktop/facial-recognition/public/labeled_images/" +
             label
         )) ?? 0;
 
@@ -194,7 +194,7 @@ export async function loadLabeledImages(
       const descriptions = [];
       for (let i = 1; i <= numberOfPics; i++) {
         const img = await faceapi.fetchImage(
-          `http://localhost:2443/labeled_images/${label}/${i}.jpg`
+          `https://facialrecognition.ramsaysdetailing.ca/labeled_images/${label}/${i}.jpg`
         );
         const detections = await faceapi
           .detectSingleFace(img)
