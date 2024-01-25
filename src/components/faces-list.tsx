@@ -7,7 +7,7 @@ import { useLoadingContext } from "../../context/loading-context";
 
 export default function FacesList() {
   const { faces, setFaces, setFacesLength } = useFacesContext();
-  const {videoLoaded, setVideoLoaded} = useLoadingContext()
+  const { videoLoaded, setVideoLoaded } = useLoadingContext();
   return (
     <ul>
       {faces ? (
@@ -16,7 +16,16 @@ export default function FacesList() {
             <li key={i}>
               😁 {face}
               <button
-                onClick={async () => removeFace(face, faces, setFaces, setFacesLength, videoLoaded, setVideoLoaded)}
+                onClick={async () =>
+                  removeFace(
+                    face,
+                    faces,
+                    setFaces,
+                    setFacesLength,
+                    videoLoaded,
+                    setVideoLoaded
+                  )
+                }
                 className="delete-button"
               >
                 <MdDeleteForever />
@@ -27,7 +36,7 @@ export default function FacesList() {
           <h1>no known faces</h1>
         )
       ) : (
-        <h1>loading faces</h1>
+        <h1>loading faces...</h1>
       )}
     </ul>
   );

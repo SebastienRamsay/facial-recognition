@@ -6,8 +6,6 @@ import {
   getNumberOfFiles,
   saveImage,
 } from "../actions/database";
-import { useFacesContext } from "../context/faces-context";
-import { useLoadingContext } from "../context/loading-context";
 
 export const checkName = (name: string | undefined, facesLength: number) => {
   if (facesLength < 1) {
