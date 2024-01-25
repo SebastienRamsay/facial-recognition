@@ -88,7 +88,7 @@ export async function setupVideo(
 
   const labeledFaceDescriptors = await loadLabeledImages(setFaces);
   var faceMatcher: faceapi.FaceMatcher;
-  if (labeledFaceDescriptors.length > 0) {
+  if (labeledFaceDescriptors && labeledFaceDescriptors.length > 0) {
     faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
   }
 
@@ -126,7 +126,7 @@ export async function setupVideo(
 
     context.clearRect(0, 0, canvas.width, canvas.height); //clear canvas
 
-    if (labeledFaceDescriptors.length > 0) {
+    if (labeledFaceDescriptors && labeledFaceDescriptors.length > 0) {
       const results = resizedDetections.map((d) =>
         faceMatcher.findBestMatch(d.descriptor)
       );
@@ -169,18 +169,14 @@ export async function setupVideo(
 export async function loadLabeledImages(
   setFaces: React.Dispatch<React.SetStateAction<string[] | undefined>>
 ) {
-  const labels =
-    (await getFolderNames(
-      "/home/ramsay/Desktop/facial-recognition/public/labeled_images/"
-    )) ?? [];
+  const LABLELED_IMAGES_LOCATION = "public/labeled_images/";
+  //const LABLELED_IMAGES_LOCATION = "../../public/labeled_images/"
+  const labels = (await getFolderNames(LABLELED_IMAGES_LOCATION)) ?? [];
   let cleanedLabels = <string[]>[];
   const labeledFaceDescriptorsPromises = labels.map(
     async (label: string, i: number) => {
       const numberOfPics =
-        (await getNumberOfFiles(
-          "/home/ramsay/Desktop/facial-recognition/public/labeled_images/" +
-            label
-        )) ?? 0;
+        (await getNumberOfFiles(LABLELED_IMAGES_LOCATION + label)) ?? 0;
 
       if (numberOfPics == 0) {
         deleteFace(label);
