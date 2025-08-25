@@ -1,5 +1,5 @@
 ## Facial Recognition Web App
-This is a web app I created to beef up my resume a little bit, this project uses face-api.js.
+This is a web app I created to beef up my resume a little bit, this project uses [`face-api.js`](https://justadudewhohacks.github.io/face-api.js/docs/index.html).
 The user can use the camera on their device to take a picture of their face and give themselves a name.
 This will add their face to a db and this image will also be put in the public folder of the project.
 This being said any image taken on the website will be publicly available until the image is deleted using the user interface.
