@@ -7,6 +7,7 @@ Once the website is given at least one face it will start to recognize that pers
 The api also allows us to detect mood, so if someone is sad or happy we should be able to tell the difference between the two.
 
 For some reason I decided to use css for this project while also using typescript.
+
 The project can be found live at [`facialrecognition.ramsaysdetailing.ca`](https://facialrecognition.ramsaysdetailing.ca/)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
