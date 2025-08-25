@@ -1,3 +1,11 @@
+## Facial Recognition Web App
+This is a web app I created to beef up my resume a little bit, this project uses face-api.js.
+The user can use the camera on their device to take a picture of their face and give themselves a name.
+This will add their face to a db and this image will also be put in the public folder of the project.
+This being said any image taken on the website will be publicly available until the image is deleted using the user interface.
+Once the website is given at least one face it will start to recognize that person or those people.
+The api also allows us to detect mood, so if someone is sad or happy we should be able to tell the difference between the two.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
